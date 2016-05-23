@@ -1,0 +1,5 @@
+1.Algorithm for MST used is Kruskal.
+2.Implemented in graph.h and graph.cpp.
+3.A sample input file named as “input.txt” is given in the folder. The format should follow this file where under “Nodes” heading each node is declared. For example “A 1 1” represents that there is a node with name A, x-cor 1 and y-cor 1. Then under “Arcs” each edge is declared. So, for example, “A B 7” represents an undirected edge between A and B with distance 7.
+4.Run the main.cpp file and type in your text file to obtain its MST(in this case “input.txt”).
+5.Enjoy.  
