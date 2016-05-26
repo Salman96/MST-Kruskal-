@@ -21,51 +21,45 @@ Graph::Graph(char* a)
     string file = string(a);
     ifstream myfile(file.c_str());
     getline(myfile,line);
-    int k = 0;
+    int counter = 0; //sets rank of each node
     while(1)
     {
-        string st1, st2, st3;
-        myfile >> st1;
-        if(st1 == "ARCS")
+        string node, x_cor, y_cor;
+        myfile >> node;
+        if(node == "ARCS")
             break;
-        myfile >> st2;
-        myfile >> st3;
-        float t2 = stof(st2);
-        float t3 = stof(st3);
-        node *temp = new node(st1, t2, t3);
-        temp->rank = k;
-        k++;
+        myfile >> x_cor;
+        myfile >> y_cor;
+        float t2 = stof(x_cor);
+        float t3 = stof(y_cor);
+        node *temp = new node(node, t2, t3);
+        temp->rank = counter;
+        counter++;
         cities.push_back(temp);
     }
     while(!myfile.eof())
     {
-        string st1, st2, st3;
-        myfile >> st1;
-        myfile >> st2;
+        string node1, node2, distance;
+        myfile >> node1;
+        myfile >> node2;
         if(myfile.eof())
             break;
-        myfile >> st3;
+        myfile >> distance;
         
-        float w3 = stof(st3);
+        float weight = stof(distance);
         int a,b;
         for(int i=0; i < cities.size(); i++)
         {
             if(cities[i]->name == st1){
                 a = i;
-                break;
             }
-        }
-        for(int j=0; j < cities.size(); j++)
-        {
-            if(cities[j]->name == st2)
+            else if(cities[j]->name == st2)
             {
                 b = j;
-                break;
             }
-                
         }
         
-        edge temp(cities[a], cities[b], w3);
+        edge temp(cities[a], cities[b], weight);
         arcs.push_back(temp);
         cities[a]->edges.push_back(temp);
         cities[b]->edges.push_back(temp);
